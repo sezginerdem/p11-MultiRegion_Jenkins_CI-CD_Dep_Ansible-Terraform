@@ -5,7 +5,7 @@ You were recently hired as an Infrastructure Automation Engineer at a SaaS compa
 Your first task is to use Terraform and Ansible to deploy a distributed Jenkins CI/CD pipeline and put it behind one of the company's DNS domains for testing. It sounds easy enough but there's quite some planning which will go into this and you're already on top of it.
 # MultiRegion_Jenkins_CI-CD_Dep_Ansible-Terraform
 
-![Distributed_Multi-Region_Jenkins_CI-CD_Deployment](images/Distributed_Multi-Region_Jenkins_CI-CD_Deployment.png "Distributed_Multi-Region_Jenkins_CI-CD_Deployment")
+![Distributed_Multi-Region_Jenkins_CI-CD_Deployment](images/1Distributed_Multi-Region_Jenkins_CI-CD_Deployment.png "Distributed_Multi-Region_Jenkins_CI-CD_Deployment")
 
 I compared and contrasted Terraform, Ansible, and Terraform in this project as I gear up for diving into this project to use all of these infrastructure-as-code technologies.
 
@@ -46,12 +46,17 @@ I went through the layout of security groups and also demonstrate them.
 
 I leveraged the power of Systems Manager (SSM) public parameter store to fetch AMI IDs in Terraform. I used these fetched AMI IDs later to spin up EC2 instances which would hosted our Jenkins application.
 
+![Fetch_AMI_IDs_Using_SSM.png](images/2Fetch_AMI_IDs_Using_SSM.png "Fetch_AMI_IDs_Using_SSM.png")
+
 I run through generating an SSH key pair and used it to create EC2 key pairs. I did this using Terraform, so that later I could attach those EC2 key pairs to our application nodes and connect to them using SSH.
+
+![Deploy_EC2_Key_Paris_for_App_Nodes.png](images/3Deploy_EC2_Key_Paris_for_App_Nodes.png "Deploy_EC2_Key_Paris_for_App_Nodes.png")
 
 I had defined the resources for creating the EC2 instances which hosted our Jenkins master and Jenkins worker nodes in separate regions. I also defined outputs in Terraform to show the public IPs of these instances once terraform apply has run successfully. Finally I tested the EC2 keypairs that I had created in preceding part to SSH into our newly-created EC2 instances.  
 
 Resources:
 Terraform code for this lesson (App VM Deployment Part 3)
+
 
 
 In this part, I added Terraform provisioners to my EC2 instance resources and apply bootstrapping to the EC2 instances (for Jenkins Master and Worker nodes) via sample Ansible playbooks. I used Ansible dynamic inventory for AWS to keep track of instances as they were spun up and deleted. Later, I built customized Ansible playbooks for bootstrapping our Jenkins application installation and integration.  
@@ -62,6 +67,7 @@ Provisioner Block to Add in EC2 Resource for Jenkins Master
 jenkins-master-sample.yml
 jenkins-worker-sample.yml
 
+![Deploy_Jenkins_Master_and_Workers_EC2.png](images/4Deploy_Jenkins_Master_and_Workers_EC2.png "Deploy_Jenkins_Master_and_Workers_EC2.png")
 
 I went ahead with deploying an application load balancer which fronts an EC2 application node. In this lesson, I showed a sample Apache (HTTPD) webserver running on the EC2 instance in question.  
 
