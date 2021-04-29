@@ -46,11 +46,11 @@ I went through the layout of security groups and also demonstrate them.
 
 I leveraged the power of Systems Manager (SSM) public parameter store to fetch AMI IDs in Terraform. I used these fetched AMI IDs later to spin up EC2 instances which would hosted our Jenkins application.
 
-![Fetch_AMI_IDs_Using_SSM.png](images/2Fetch_AMI_IDs_Using_SSM.png "Fetch_AMI_IDs_Using_SSM.png")
+![Fetch_AMI_IDs_Using_SSM.png](images/2Fetch_AMI_IDs_Using_SSM.png "Fetch_AMI_IDs_Using_SSM")
 
 I run through generating an SSH key pair and used it to create EC2 key pairs. I did this using Terraform, so that later I could attach those EC2 key pairs to our application nodes and connect to them using SSH.
 
-![Deploy_EC2_Key_Paris_for_App_Nodes.png](images/3Deploy_EC2_Key_Paris_for_App_Nodes.png "Deploy_EC2_Key_Paris_for_App_Nodes.png")
+![Deploy_EC2_Key_Paris_for_App_Nodes.png](images/3Deploy_EC2_Key_Paris_for_App_Nodes.png "Deploy_EC2_Key_Paris_for_App_Nodes")
 
 I had defined the resources for creating the EC2 instances which hosted our Jenkins master and Jenkins worker nodes in separate regions. I also defined outputs in Terraform to show the public IPs of these instances once terraform apply has run successfully. Finally I tested the EC2 keypairs that I had created in preceding part to SSH into our newly-created EC2 instances.  
 
@@ -67,7 +67,7 @@ Provisioner Block to Add in EC2 Resource for Jenkins Master
 jenkins-master-sample.yml
 jenkins-worker-sample.yml
 
-![Deploy_Jenkins_Master_and_Workers_EC2.png](images/4Deploy_Jenkins_Master_and_Workers_EC2.png "Deploy_Jenkins_Master_and_Workers_EC2.png")
+![Deploy_Jenkins_Master_and_Workers_EC2.png](images/4Deploy_Jenkins_Master_and_Workers_EC2.png "Deploy_Jenkins_Master_and_Workers_EC2")
 
 I went ahead with deploying an application load balancer which fronts an EC2 application node. In this lesson, I showed a sample Apache (HTTPD) webserver running on the EC2 instance in question.  
 
@@ -75,8 +75,9 @@ Resources:
 Terraform code for this lesson
 jenkins-master-sample.yml
 
+![Creating_an_ALB_and_Routing_Traffic_to_EC2_Node](images/5Creating_an_ALB_and_Routing_Traffic_to_EC2_Node.png "Creating_an_ALB_and_Routing_Traffic_to_EC2_Node")
 
-I went about deploying the HTTPS endpoint for my application. I did this by adding an HTTPS listener to the ALB we created in the previous lesson. I generated an SSL certificate to attach to the ALB HTTPS listener so that HTTPS traffic can be terminated at the ALB. I put a DNS domain in front of our load balancer and also enabled http to https redirection.
+I went about deploying the HTTPS endpoint for my application. I did this by adding an HTTPS listener to the ALB I created in the previous part. I generated an SSL certificate to attach to the ALB HTTPS listener so that HTTPS traffic can be terminated at the ALB. I put a DNS domain in front of our load balancer and also enabled http to https redirection.
 
 $aws route53 list-hosted-zones
 
@@ -88,12 +89,15 @@ Terraform code for Application Load Balancer(alb.tf)
 Terraform code for ACM(acm.tf)
 Terraform code for Outputs(outputs.tf)
 
+![Deploy_Route53_Records](images/6Deploy_Route53_Records.png "Deploy_Route53_Records")
 ## Ansible Configuration Management
 
 A quick look at how to check Ansible playbooks for correct syntax using a flag provided by the ansible-playbook CLI command.  
 
 Resources:
-sample.yml (Ansible playbook shown in lesson)
+sample.yml
+
+![The_Chronology_of_Ansible_Playbook-Jenkins_Master](images/7The_Chronology_of_Ansible_Playbook-Jenkins_Master.png "The_Chronology_of_Ansible_Playbook-Jenkins_Master")
 
 I was exclusively working on the Ansible playbook for setting up our Jenkins master/main node application. Afterwards I verified the syntax of the file using the syntax-check flag of ansible-playbook.
 
@@ -112,6 +116,8 @@ The link to the Jenkins worker playbook can be found in the resources section of
 Resources:
 Jenkins Worker Ansible Playbook
 
+![The_Chronology_of_Ansible_Playbook-Jenkins_Workers](images/8The_Chronology_of_Ansible_Playbook-Jenkins_Workers.png "The_Chronology_of_Ansible_Playbook-Jenkins_Workers")
+
 
 I learned about Jinja templating in Ansible and creating Jinja templates. I referenced these templates earlier in the Ansible playbook for the Jenkins worker node.
 
@@ -125,7 +131,11 @@ cred-privkey.j2
 
 In this final, bring-it-all-together part, went through a checklist to make sure I did not missing any depedencies. I also modified the provisioners for the Jenkins master and worker nodes to pluged in the Ansible playbooks I wrote in previous part. In addition, we modify the ansible-playbook command in the Jenkins worker creation provisioner.
 
+![Deploying_to_AWS_with_Terraform_and_Ansible](images/9Deploying_to_AWS_with_Terraform_and_Ansible.png "Deploying_to_AWS_with_Terraform_and_Ansible")
+
 I fetched a public DNS domain hosted on Route 53 and copy it into the default variable I had been created earlier in the variables.tf file: dns-name.
+
+
 
 I also changed the default value of the variable webserver-port to 8080 as Jenkins expects traffic from ALB on 8080.
 
