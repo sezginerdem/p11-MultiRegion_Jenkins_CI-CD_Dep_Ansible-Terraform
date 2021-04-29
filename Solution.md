@@ -1,3 +1,7 @@
+# Description
+You were recently hired as an Infrastructure Automation Engineer at a SaaS company. The company is trying to move away from cloud-provider-specific infrastructure as code. They want to test out Terraform for infrastructure deployment as it is cloud agnostic and Ansible as it is OS agnostic and also a hybrid IaC tool.
+
+Your first task is to use Terraform and Ansible to deploy a distributed Jenkins CI/CD pipeline and put it behind one of the company's DNS domains for testing. It sounds easy enough but there's quite some planning which will go into this and you're already on top of it.
 # MultiRegion_Jenkins_CI-CD_Dep_Ansible-Terraform
 
 I compared and contrasted Terraform, Ansible, and Terraform in this project as I gear up for diving into this project to use all of these infrastructure-as-code technologies.
@@ -56,24 +60,17 @@ jenkins-master-sample.yml
 jenkins-worker-sample.yml
 
 
-I went ahead with deploying an application load balancer which fronts an EC2 application node. In this lesson, we will be showing a sample Apache (HTTPD) webserver running on the EC2 instance in question. We will write and execute custom Ansible playbooks for deploying a Jenkins application in the next section.  
+I went ahead with deploying an application load balancer which fronts an EC2 application node. In this lesson, I showed a sample Apache (HTTPD) webserver running on the EC2 instance in question.  
 
 Resources:
 Terraform code for this lesson
 jenkins-master-sample.yml
 
 
-In this video, we go about deploying the HTTPS endpoint for our application. We do this by adding an HTTPS listener to the ALB we created in the previous lesson. We generate an SSL certificate to attach to the ALB HTTPS listener so that HTTPS traffic can be terminated at the ALB. We put a DNS domain in front of our load balancer and also enable http to https redirection.
-
-Note: If you are following along in A Cloud Guru's provided Cloud Playground AWS Sandbox, your temporary AWS account should come with a public domain which has the following expression where xxx is a random three-digit number.
-
-cmcloudxxx.info
-
-(If you do not see the cmcloudxxx.info domain in HostedZone please delete the AWS Sandbox and start a new Sandbox.)
-
-If you're using Cloud Playground or your own AWS account with a personal domain, issue the following command to fetch the domain:
+I went about deploying the HTTPS endpoint for my application. I did this by adding an HTTPS listener to the ALB we created in the previous lesson. I generated an SSL certificate to attach to the ALB HTTPS listener so that HTTPS traffic can be terminated at the ALB. I put a DNS domain in front of our load balancer and also enabled http to https redirection.
 
 $aws route53 list-hosted-zones
+
 Look for Name under the HostedZone field in the output of the above command.  
 
 Resources:
@@ -89,9 +86,9 @@ A quick look at how to check Ansible playbooks for correct syntax using a flag p
 Resources:
 sample.yml (Ansible playbook shown in lesson)
 
-We'll be exclusively working on the Ansible playbook for setting up our Jenkins master/main node application. Afterwards we'll verify the syntax of the file using the syntax-check flag of ansible-playbook.
+I was exclusively working on the Ansible playbook for setting up our Jenkins master/main node application. Afterwards I verified the syntax of the file using the syntax-check flag of ansible-playbook.
 
-Note: For the learners following along, please remember that this playbook expects that you have setup Ansible Dynamic inventory for EC2 (AWS) and the inventory configuration file from the following lesson:
+Note: For this project following along, please remember that this playbook expects that you have setup Ansible Dynamic inventory for EC2 (AWS) and the inventory configuration file from the following lesson:
 
 Configuring Terraform Provisioners for Config Management via Ansible
 The link to the playbook is in the resource section of this video.  
@@ -99,17 +96,17 @@ The link to the playbook is in the resource section of this video.
 Resources:
 Playbook Jenkins Master
 
-In this lesson, we create the Ansible playbook for our Jenkins worker to run inside the Terraform provisioner. We briefly go over the logic and modules used to setup the Jenkins worker and check it's syntax validity using the --synyax-check flag for the ansible-playbook command.
+I created the Ansible playbook for Jenkins worker to run inside the Terraform provisioner. I briefly went over the logic and modules used to setup the Jenkins worker and checked it's syntax validity using the --synyax-check flag for the ansible-playbook command.
 
-The link to the Jenkins worker playbook can be found in the resources section of this video.  
+The link to the Jenkins worker playbook can be found in the resources section of this video.
 
 Resources:
 Jenkins Worker Ansible Playbook
 
 
-In this lesson, we learn about Jinja templating in Ansible and creating Jinja templates. We referenced these templates earlier in the Ansible playbook for the Jenkins worker node.
+I learned about Jinja templating in Ansible and creating Jinja templates. I referenced these templates earlier in the Ansible playbook for the Jenkins worker node.
 
-Links to download the two Jinja templates created in this lesson can be found in the resources section of the video.  
+Links to download the two Jinja templates created in this part can be found in the resources so.  
 
 Resources:
 node.j2
@@ -117,26 +114,21 @@ cred-privkey.j2
 
 ## Bringing It All Together
 
-In this final, bring-it-all-together lesson, we go through a checklist to make sure we're not missing any depedencies. We also modify the provisioners for the Jenkins master and worker nodes to plug in the Ansible playbooks we wrote in previous sections. In addition, we modify the ansible-playbook command in the Jenkins worker creation provisioner.
+In this final, bring-it-all-together part, went through a checklist to make sure I did not missing any depedencies. I also modified the provisioners for the Jenkins master and worker nodes to pluged in the Ansible playbooks I wrote in previous part. In addition, we modify the ansible-playbook command in the Jenkins worker creation provisioner.
 
-We'll be fetching a public DNS domain hosted on Route 53 and copy it into the default variable we created earlier in the variables.tf file: dns-name.
+I fetched a public DNS domain hosted on Route 53 and copy it into the default variable I had been created earlier in the variables.tf file: dns-name.
 
-We'll also change the default value of the variable webserver-port to 8080 as Jenkins expects traffic from ALB on 8080.
+I also changed the default value of the variable webserver-port to 8080 as Jenkins expects traffic from ALB on 8080.
 
-Finally, we run terraform apply and use the URL returned as output of terraform apply to verify if the deployment was successful.
+Finally, I run terraform apply and use the URL returned as output of terraform apply to verify if the deployment was successful.
 
-We'll log into the application using the following credentials:
+I loged into the application using the following credentials:
 
 username: admin
 password: password
-With the Jenkins GUI, we can verify that the spun-up worker (1 in the variable.tf file by default) successfully integrated with the Jenkins master.
 
-Note: For getting the DNS part to work, we'll need to provide a publicly routed domain. If you have access to ACG's CloudPlayground AWS account, you can follow along exactly as in the lesson.
+With the Jenkins GUI, I could verify that the spun-up worker (1 in the variable.tf file by default) successfully integrated with the Jenkins master.
 
-In this lesson, we learn about the debugging environment variables available for both Ansible and Terraform, as well as the debugging flag available for Ansible. Later in the lesson, we'll go through guided demonstrations of how to invoke and use these debugging variables and what to expect in the output of verbose logs.
+Note: For getting the DNS part to work, I need to provide a publicly routed domain.
 
-
-Description
-You were recently hired as an Infrastructure Automation Engineer at a SaaS company. The company is trying to move away from cloud-provider-specific infrastructure as code. They want to test out Terraform for infrastructure deployment as it is cloud agnostic and Ansible as it is OS agnostic and also a hybrid IaC tool.
-
-Your first task is to use Terraform and Ansible to deploy a distributed Jenkins CI/CD pipeline and put it behind one of the company's DNS domains for testing. It sounds easy enough but there's quite some planning which will go into this and you're already on top of it.
+I learned about the debugging environment variables available for both Ansible and Terraform, as well as the debugging flag available for Ansible. Later I went through guided demonstrations of how to invoke and use these debugging variables and what to expect in the output of verbose logs.
