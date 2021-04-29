@@ -1,59 +1,53 @@
 # MultiRegion_Jenkins_CI-CD_Dep_Ansible-Terraform
 
-We'll be comparing and contrasting Terraform, Ansible, and CloudFormation in this lesson as we gear up for diving into this course to use all of these infrastructure-as-code technologies.
+I compared and contrasted Terraform, Ansible, and Terraform in this project as I gear up for diving into this project to use all of these infrastructure-as-code technologies.
 
-In this lesson, we go through a brief summary of what we'll be building as an end result of this goal, and how those individual units of infrastructure are going to be connected and deployed via Ansible and Terraform.
-
-This is a quick run-through of what would make going through this course a smooth and enjoyable experience for you, the learner.
-
+In this project, I went through a brief summary of what I did building as an end result of this goal, and how those individual units of infrastructure were going to be connected and deployed via Ansible and Terraform.
 
 ## Setting Up the Environment
 
-We'll be setting up the generally available Terraform binary. As of this recording, the version is 0.12.29. 
-The demonstration in this lecture is based on a CentOS 7 system.
+I was set up the generally available Terraform binary. As of this recording, the version is 0.12.29. In this project is based on a CentOS 7 system.
 
+I build on setting up the system so that it has the required software installed for following along in this project. I installed Ansible and AWS CLI using Python's Pip package manager. I used a CentOS 7 system as a base for running Terraform deployments throughout the project.
 
-
-In this lesson, we build on setting up the system so that it has the required software installed for following along in this course. We'll install Ansible and AWS CLI using Python's Pip package manager. We use a CentOS 7 system as a base for running Terraform deployments throughout the course.
-
-Note: Terraform will be utilizing the credentials for communicating with AWS via the AWS CLI that we set up in this lesson. We will be issuing the following command, once we install the AWS CLI utility to save the credentials for AWS locally on the system. Terraform will be using these credentials to carry out API calls to AWS in the backend:
+Note: Terraform used for utilizing the credentials for communicating with AWS via the AWS CLI that set up in this part. I had been issuing the following command, once I installed the AWS CLI utility to save the credentials for AWS locally on the system. Terraform was been using these credentials to carry out API calls to AWS in the backend:
 
 $ aws configure
 
-You will be prompted to enter an AWS Access Key ID and a AWS Secret Access Key ID as well as default region(enter us-east-1) and default output for API call outputs(enter json). This will then save the credentials in the ~/.aws/credentials file.
+I had been prompted to enter an AWS Access Key ID and a AWS Secret Access Key ID as well as default region(enter us-east-1) and default output for API call outputs(enter json). This was then save the credentials in the ~/.aws/credentials file.
 
 
 
-In this lesson, we describe how to allow Terraform to deploy resources in AWS using IAM policies.
+In this part, I described how to allow Terraform to deploy resources in AWS using IAM policies.
 
-At the least, we'll need IAM permissions described by the IAM policy available in the resource section of this video. We can then do one of the following:
+At the least, I needed IAM permissions described by the IAM policy available in the resource section of this part. I could then do one of the following:
 
 Create an EC2 role and attach an instance profile to an EC2 instance to work within AWS.
 Attach the IAM policy directly to an IAM user created for this deployment and configure AWS CLI with it's credentials to allow Terraform permissions to deploy in AWS.
 
 ## Terraform Infrastructure as Code (IaC)
 
-In this lesson, we run through what a Terrafom backend is. At the end of the lesson, we'll also demonstrate how to code and configure an AWS S3 backend with Terraform.  
+In this part, I run through what a Terrafom backend is. At the end of the part, I was also demonstrate how to code and configure an AWS S3 backend with Terraform.  
 
-In this lesson, we see how to create multiple AWS providers to use in the same Terraform project. In the context of this course, we're creating multiple providers so that we can deploy resources in more than one AWS region.
+I saw how to create multiple AWS providers to use in the same Terraform project. In the context of this project, I created multiple providers so that I can deploy resources in more than one AWS region.
 
-We will be laying down the network foundation for our CI/CD project in this lesson. We'll be deploying VPCs, subnets, and IGWs in two separate regions using the multiple providers we created earlier in the course. At the end, we'll test our Terraform code for consistency and syntax, then deploy it using terraform apply.
+I had been laying down the network foundation for our CI/CD project in this part. I had been deploying VPCs, subnets, and IGWs in two separate regions using the multiple providers I created earlier in the project. At the end, I had tested my Terraform code for consistency and syntax, then deployed it using terraform apply.
 
-In this lesson, we continue building on the network part of our deployment. We first build a VPC peering connection between the two VPCs in separate regions and then proceed to manipulate VPC route tables so that both VPCs can communicate over the VPC peering connection.  
+I continued building on the network part of my deployment. I first built a VPC peering connection between the two VPCs in separate regions and then proceeded to manipulate VPC route tables so that both VPCs can communicate over the VPC peering connection.  
 
-In this lesson, we go through the layout of security groups and also demonstrate them.  
+I went through the layout of security groups and also demonstrate them.  
 
-In this lesson, we leverage the power of Systems Manager (SSM) public parameter store to fetch AMI IDs in Terraform. We'll be using these fetched AMI IDs later to spin up EC2 instances which will host our Jenkins application.
+I leveraged the power of Systems Manager (SSM) public parameter store to fetch AMI IDs in Terraform. I used these fetched AMI IDs later to spin up EC2 instances which would hosted our Jenkins application.
 
-We run through generating an SSH key pair and using it to create EC2 key pairs. We do this using Terraform, so that later we can attach those EC2 key pairs to our application nodes and connect to them using SSH.
+I run through generating an SSH key pair and used it to create EC2 key pairs. I did this using Terraform, so that later I could attach those EC2 key pairs to our application nodes and connect to them using SSH.
 
-In this demonstration lesson, we define the resources for creating the EC2 instances which will host our Jenkins master and Jenkins worker nodes in separate regions. We also define outputs in Terraform to show the public IPs of these instances once terraform apply has run successfully. Finally we test the EC2 keypairs that we created in preceding lessons to SSH into our newly-created EC2 instances.  
+I had defined the resources for creating the EC2 instances which hosted our Jenkins master and Jenkins worker nodes in separate regions. I also defined outputs in Terraform to show the public IPs of these instances once terraform apply has run successfully. Finally I tested the EC2 keypairs that I had created in preceding part to SSH into our newly-created EC2 instances.  
 
 Resources:
 Terraform code for this lesson (App VM Deployment Part 3)
 
 
-In this demonstration lesson, we add Terraform provisioners to our EC2 instance resources and apply bootstrapping to the EC2 instances (for Jenkins Master and Worker nodes) via sample Ansible playbooks. We use Ansible dynamic inventory for AWS to keep track of instances as they are spun up and deleted. Later on in the course, we'll be building customized Ansible playbooks for bootstrapping our Jenkins application installation and integration.  
+In this part, I added Terraform provisioners to my EC2 instance resources and apply bootstrapping to the EC2 instances (for Jenkins Master and Worker nodes) via sample Ansible playbooks. I used Ansible dynamic inventory for AWS to keep track of instances as they were spun up and deleted. Later, I built customized Ansible playbooks for bootstrapping our Jenkins application installation and integration.  
 
 Resources:
 tf_aws_ec2.yml ( Ansible Dynamic AWS inventory configuration file download URL)
@@ -62,7 +56,7 @@ jenkins-master-sample.yml
 jenkins-worker-sample.yml
 
 
-We'll go ahead with deploying an application load balancer which fronts an EC2 application node. In this lesson, we will be showing a sample Apache (HTTPD) webserver running on the EC2 instance in question. We will write and execute custom Ansible playbooks for deploying a Jenkins application in the next section.  
+I went ahead with deploying an application load balancer which fronts an EC2 application node. In this lesson, we will be showing a sample Apache (HTTPD) webserver running on the EC2 instance in question. We will write and execute custom Ansible playbooks for deploying a Jenkins application in the next section.  
 
 Resources:
 Terraform code for this lesson
