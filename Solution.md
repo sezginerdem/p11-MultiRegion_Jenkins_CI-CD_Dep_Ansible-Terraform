@@ -47,15 +47,22 @@ terraform_deployment_iam_policy.json
 terraform_deployment_lax_iam_policy.json
 ## Terraform Infrastructure as Code (IaC)
 
-In this part, I run through what a Terrafom backend is. At the end of the part, I was also demonstrate how to code and configure an AWS S3 backend with Terraform.  
-
-I saw how to create multiple AWS providers to use in the same Terraform project. In the context of this project, I created multiple providers so that I can deploy resources in more than one AWS region.
+In the context of this project, I created multiple providers so that I can deploy resources in more than one AWS region.
 
 I had been laying down the network foundation for our CI/CD project in this part. I had been deploying VPCs, subnets, and IGWs in two separate regions using the multiple providers I created earlier in the project. At the end, I had tested my Terraform code for consistency and syntax, then deployed it using terraform apply.
 
+Resources:
+network_setup_1.tf
+
 I continued building on the network part of my deployment. I first built a VPC peering connection between the two VPCs in separate regions and then proceeded to manipulate VPC route tables so that both VPCs can communicate over the VPC peering connection.  
 
+Resources:
+network_setup_2.tf
+
 I went through the layout of security groups and also demonstrate them.  
+
+Resources:
+network_setup_3.tf
 
 I leveraged the power of Systems Manager (SSM) public parameter store to fetch AMI IDs in Terraform. I used these fetched AMI IDs later to spin up EC2 instances which would hosted our Jenkins application.
 
