@@ -68,22 +68,29 @@ I leveraged the power of Systems Manager (SSM) public parameter store to fetch A
 
 ![Fetch_AMI_IDs_Using_SSM.png](images/2Fetch_AMI_IDs_Using_SSM.png "Fetch_AMI_IDs_Using_SSM")
 
+Resources:
+instances.tf
+ssm_resource_path_string.txt
+
+
 I run through generating an SSH key pair and used it to create EC2 key pairs. I did this using Terraform, so that later I could attach those EC2 key pairs to our application nodes and connect to them using SSH.
+
+Resources:
+instances_2.tf
 
 ![Deploy_EC2_Key_Paris_for_App_Nodes.png](images/3Deploy_EC2_Key_Paris_for_App_Nodes.png "Deploy_EC2_Key_Paris_for_App_Nodes")
 
 I had defined the resources for creating the EC2 instances which hosted our Jenkins master and Jenkins worker nodes in separate regions. I also defined outputs in Terraform to show the public IPs of these instances once terraform apply has run successfully. Finally I tested the EC2 keypairs that I had created in preceding part to SSH into our newly-created EC2 instances.  
 
 Resources:
-Terraform code for this lesson (App VM Deployment Part 3)
-
+instances_3.tf
 
 
 In this part, I added Terraform provisioners to my EC2 instance resources and apply bootstrapping to the EC2 instances (for Jenkins Master and Worker nodes) via sample Ansible playbooks. I used Ansible dynamic inventory for AWS to keep track of instances as they were spun up and deleted. Later, I built customized Ansible playbooks for bootstrapping our Jenkins application installation and integration.  
 
 Resources:
-tf_aws_ec2.yml ( Ansible Dynamic AWS inventory configuration file download URL)
-Provisioner Block to Add in EC2 Resource for Jenkins Master
+tf_aws_ec2.yml
+master_provisioner.tf
 jenkins-master-sample.yml
 jenkins-worker-sample.yml
 
@@ -92,8 +99,8 @@ jenkins-worker-sample.yml
 I went ahead with deploying an application load balancer which fronts an EC2 application node. In this lesson, I showed a sample Apache (HTTPD) webserver running on the EC2 instance in question.  
 
 Resources:
-Terraform code for this lesson
-jenkins-master-sample.yml
+alb.tf
+jenkins-master-sample_2.yml
 
 ![Creating_an_ALB_and_Routing_Traffic_to_EC2_Node](images/5Creating_an_ALB_and_Routing_Traffic_to_EC2_Node.png "Creating_an_ALB_and_Routing_Traffic_to_EC2_Node")
 
@@ -104,18 +111,13 @@ $aws route53 list-hosted-zones
 Look for Name under the HostedZone field in the output of the above command.  
 
 Resources:
-Terraform code for DNS(dns.tf)
-Terraform code for Application Load Balancer(alb.tf)
-Terraform code for ACM(acm.tf)
-Terraform code for Outputs(outputs.tf)
+dns.tf
+alb_2.tf
+alb_acm.tf
+outputs.tf
 
 ![Deploy_Route53_Records](images/6Deploy_Route53_Records.png "Deploy_Route53_Records")
 ## Ansible Configuration Management
-
-A quick look at how to check Ansible playbooks for correct syntax using a flag provided by the ansible-playbook CLI command.  
-
-Resources:
-sample.yml
 
 ![The_Chronology_of_Ansible_Playbook-Jenkins_Master](images/7The_Chronology_of_Ansible_Playbook-Jenkins_Master.png "The_Chronology_of_Ansible_Playbook-Jenkins_Master")
 
