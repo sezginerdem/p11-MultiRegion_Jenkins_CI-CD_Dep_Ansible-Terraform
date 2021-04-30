@@ -50,6 +50,8 @@ You can find the solution in this repo at [Solution.md](https://github.com/sezgi
 
 - GitHub [@sezginerdem](https://{https://github.com/sezginerdem})
 - Linkedin [@sezginerdem](https://{https://www.linkedin.com/in/sezginerdem/})
+- Medium [@sezginerdem](https://serdem.medium.com/)
+)
 
 ## Warning
 1. Parts of this repository expect users to obtain a Route53 domain name, which is available with ACG Playground tier subscription.
