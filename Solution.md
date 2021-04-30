@@ -129,14 +129,14 @@ Configuring Terraform Provisioners for Config Management via Ansible
 The link to the playbook is in the resource section of this video.  
 
 Resources:
-Playbook Jenkins Master
+install_jenkins.yaml
 
 I created the Ansible playbook for Jenkins worker to run inside the Terraform provisioner. I briefly went over the logic and modules used to setup the Jenkins worker and checked it's syntax validity using the --synyax-check flag for the ansible-playbook command.
 
 The link to the Jenkins worker playbook can be found in the resources section of this video.
 
 Resources:
-Jenkins Worker Ansible Playbook
+install_worker.yaml
 
 ![The_Chronology_of_Ansible_Playbook-Jenkins_Workers](images/8The_Chronology_of_Ansible_Playbook-Jenkins_Workers.png "The_Chronology_of_Ansible_Playbook-Jenkins_Workers")
 
