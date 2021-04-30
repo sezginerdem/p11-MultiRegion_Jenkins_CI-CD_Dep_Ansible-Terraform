@@ -3,7 +3,7 @@
 You were recently hired as an Infrastructure Automation Engineer at a SaaS company. The company is trying to move away from cloud-provider-specific infrastructure as code. They want to test out Terraform for infrastructure deployment as it is cloud agnostic and Ansible as it is OS agnostic and also a hybrid IaC tool.
 
 Your first task is to use Terraform and Ansible to deploy a distributed Jenkins CI/CD pipeline and put it behind one of the company's DNS domains for testing. It sounds easy enough but there's quite some planning which will go into this and you're already on top of it.
-# MultiRegion_Jenkins_CI-CD_Dep_Ansible-Terraform
+# Multi-Region_Jenkins_CI-CD_Dep_Ansible-Terraform
 
 ![Distributed_Multi-Region_Jenkins_CI-CD_Deployment](images/1Distributed_Multi-Region_Jenkins_CI-CD_Deployment.png "Distributed_Multi-Region_Jenkins_CI-CD_Deployment")
 
@@ -15,13 +15,23 @@ In this project, I went through a brief summary of what I did building as an end
 
 I was set up the generally available Terraform binary. As of this recording, the version is 0.12.29. In this project is based on a CentOS 7 system.
 
+Resources:
+Terraform 0.12.29 Binary Linux
+
 I build on setting up the system so that it has the required software installed for following along in this project. I installed Ansible and AWS CLI using Python's Pip package manager. I used a CentOS 7 system as a base for running Terraform deployments throughout the project.
 
 Note: Terraform used for utilizing the credentials for communicating with AWS via the AWS CLI that set up in this part. I had been issuing the following command, once I installed the AWS CLI utility to save the credentials for AWS locally on the system. Terraform was been using these credentials to carry out API calls to AWS in the backend:
 
 $ aws configure
 
-I had been prompted to enter an AWS Access Key ID and a AWS Secret Access Key ID as well as default region(enter us-east-1) and default output for API call outputs(enter json). This was then save the credentials in the ~/.aws/credentials file.
+I had been prompted to enter an AWS Access Key ID and a AWS Secret Access Key ID as well as default region(enter us-east-1) and default output for API call outputs(enter json). This was then save the credentials in the 
+
+$ ~/.aws/credentials 
+
+file.
+
+Resources:
+Ansible (ansible.cfg)
 
 
 
@@ -32,6 +42,9 @@ At the least, I needed IAM permissions described by the IAM policy available in 
 Create an EC2 role and attach an instance profile to an EC2 instance to work within AWS.
 Attach the IAM policy directly to an IAM user created for this deployment and configure AWS CLI with it's credentials to allow Terraform permissions to deploy in AWS.
 
+Resources:
+terraform_deployment_iam_policy.json
+terraform_deployment_lax_iam_policy.json
 ## Terraform Infrastructure as Code (IaC)
 
 In this part, I run through what a Terrafom backend is. At the end of the part, I was also demonstrate how to code and configure an AWS S3 backend with Terraform.  
@@ -146,7 +159,7 @@ I loged into the application using the following credentials:
 username: admin
 password: password
 
-With the Jenkins GUI, I could verify that the spun-up worker (1 in the variable.tf file by default) successfully integrated with the Jenkins master.
+With the Jenkins GUI, I could verify that the spun-up worker (in the variable.tf file by default) successfully integrated with the Jenkins master.
 
 Note: For getting the DNS part to work, I need to provide a publicly routed domain.
 
