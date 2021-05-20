@@ -121,8 +121,7 @@ I was exclusively working on the Ansible playbook for setting up our Jenkins mas
 
 Note: For this project following along, please remember that this playbook expects that you have setup Ansible Dynamic inventory for EC2 (AWS) and the inventory configuration file from the following lesson:
 
-Configuring Terraform Provisioners for Config Management via Ansible
-The link to the playbook is in the resource section of this video.  
+## Configuring Terraform Provisioners for Config Management via Ansible
 
 Resources:\
 install_jenkins.yaml\
