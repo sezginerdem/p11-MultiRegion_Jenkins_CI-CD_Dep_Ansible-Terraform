@@ -129,8 +129,6 @@ install_jenkins.yaml\
 
 I created the Ansible playbook for Jenkins worker to run inside the Terraform provisioner. I briefly went over the logic and modules used to setup the Jenkins worker and checked it's syntax validity using the --synyax-check flag for the ansible-playbook command.
 
-The link to the Jenkins worker playbook can be found in the resources section of this video.
-
 Resources:\
 install_worker.yaml
 
