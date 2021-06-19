@@ -36,7 +36,7 @@ This deployment is to use Terraform and Ansible to deploy a distributed Jenkins 
 
 ## How To Use
 
-To clone this repo and you'll need [Git](https://git-scm.com) installed on your computer and [AWS](https://us-east-1.signin.aws.amazon.com/) account. From your command line:
+To clone this repo and you'll need [Git](https://git-scm.com) installed on your computer and [AWS](https://us-east-1.signin.aws.amazon.com/) account. From your command line :
 
 ```bash
 # Clone this repository
