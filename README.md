@@ -1,4 +1,3 @@
-
 <h1 align="center">Project-11: Multi-Region Jenkins CI/CD Deployment to AWS via Ansible-Terraform</h1>
 
 <!-- TABLE OF CONTENTS -->
