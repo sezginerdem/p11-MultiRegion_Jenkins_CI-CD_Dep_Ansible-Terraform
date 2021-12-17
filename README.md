@@ -29,6 +29,7 @@ In this project, I went through a brief summary of what I did building as an end
 - AWS
 - Jenkins
 
+
 ## Features
 
 This deployment is to use Terraform and Ansible to deploy a distributed Jenkins CI/CD pipeline and put it behind one of the company's DNS domains for testing.
